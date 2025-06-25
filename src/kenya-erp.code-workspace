@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../kenya-fuel-api"
+		},
+		{
+			"path": "../../kenya-erp-merchant"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {}
+}

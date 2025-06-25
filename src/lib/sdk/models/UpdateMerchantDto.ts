@@ -1,0 +1,61 @@
+/* generated using openapi-typescript-codegen -- do not edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export type UpdateMerchantDto = {
+    /**
+     * Name of the merchant
+     */
+    name?: string;
+    /**
+     * Tax Identification Number (TIN)
+     */
+    taxIdentifier?: string;
+    /**
+     * Contact email address
+     */
+    contactEmail?: string;
+    /**
+     * Contact phone number
+     */
+    contactPhone?: string;
+    /**
+     * Physical address
+     */
+    address?: string;
+    /**
+     * URL to merchant logo
+     */
+    logo?: string;
+    /**
+     * Tax integration type for the merchant
+     */
+    taxIntegrationType?: UpdateMerchantDto.taxIntegrationType;
+    /**
+     * Timezone for the merchant
+     */
+    timezone?: string;
+    /**
+     * ISO country code
+     */
+    country?: string;
+    /**
+     * ISO currency code
+     */
+    currency?: string;
+    /**
+     * Currency symbol for display
+     */
+    currencySymbol?: string;
+};
+export namespace UpdateMerchantDto {
+    /**
+     * Tax integration type for the merchant
+     */
+    export enum taxIntegrationType {
+        NONE = 'NONE',
+        KRA = 'KRA',
+        MALAYSIA_EINVOICE = 'MALAYSIA_EINVOICE',
+    }
+}
+

@@ -1,0 +1,446 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 271 68% 45%;
+  /* Deep purple #5E35B1 */
+  --primary-foreground: 211 100% 99%;
+  --secondary: 120 47% 34%;
+  /* Forest green #2E7D32 */
+  --secondary-foreground: 24 9.8% 10%;
+  --accent: 273 36% 63%;
+  /* Light purple #9575CD */
+  --accent-foreground: 24 9.8% 10%;
+  --accent-teal: 174 59% 41%;
+  /* Teal #26A69A */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 271 68% 45%;
+  --radius: 0.5rem;
+  --chart-1: 271 68% 45%;
+  --chart-2: 120 47% 34%;
+  --chart-3: 273 36% 63%;
+  --chart-4: 174 59% 41%;
+  --chart-5: 0 84.2% 60.2%;
+  --sidebar-background: 0 0% 100%;
+  --sidebar-foreground: 20 14.3% 4.1%;
+  --sidebar-primary: 271 68% 45%;
+  --sidebar-primary-foreground: 211 100% 99%;
+  --sidebar-accent: 273 36% 63%;
+  --sidebar-accent-foreground: 24 9.8% 10%;
+  --sidebar-border: 20 5.9% 90%;
+  --sidebar-ring: 20 14.3% 4.1%;
+  --topbar-background: 0 0% 100%;
+  --topbar-border: 20 5.9% 90%;
+  --body-background: 0 0% 96%;
+}
+
+.dark {
+  --background: 240 10% 12%;
+  /* Dark gray instead of near-black */
+  --foreground: 0 0% 98%;
+  --muted: 240 5% 20%;
+  /* Slightly lighter */
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 12%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 12%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 5% 25%;
+  /* More visible borders */
+  --input: 240 5% 20%;
+  --primary: 271 68% 45%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 120 47% 34%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 273 36% 63%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+  --sidebar-background: 240 10% 10%;
+  /* Darker than main background */
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-border: 240 5% 25%;
+  --topbar-background: 240 10% 10%;
+  --topbar-border: 240 5% 25%;
+  --body-background: 240 10% 8%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased text-foreground;
+    background-color: hsl(var(--body-background));
+  }
+
+  .sidebar-active {
+    @apply bg-primary/10 border-l-3 border-primary;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: hsl(var(--background));
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full dark:bg-gray-600;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+  }
+
+  .login-bg {
+    background-color: hsl(var(--background));
+  }
+}
+
+@layer utilities {
+  .border-l-3 {
+    border-left-width: 3px;
+  }
+}
+
+/* Apply theme to main layout components */
+header.topbar {
+  background-color: hsl(var(--topbar-background));
+  border-color: hsl(var(--topbar-border));
+  color: hsl(var(--foreground));
+}
+
+aside.sidebar {
+  background-color: hsl(var(--sidebar-background));
+  border-color: hsl(var(--sidebar-border));
+  color: hsl(var(--sidebar-foreground));
+}
+
+.sidebar-item {
+  color: hsl(var(--sidebar-foreground));
+}
+
+.sidebar-item:hover {
+  background-color: hsl(var(--primary) / 0.1);
+}
+
+/* Table styles */
+table {
+  border-color: hsl(var(--border));
+}
+
+table thead {
+  background-color: hsl(var(--muted)/50%);
+}
+
+table thead tr {
+  background-color: hsl(var(--muted)/50%);
+  color: hsl(var(--muted-foreground));
+  border-bottom-width: 1px;
+  border-bottom-color: hsl(var(--border));
+}
+
+table tbody tr {
+  border-bottom-width: 1px;
+  border-bottom-color: hsl(var(--border));
+}
+
+table tbody tr:last-child {
+  border-bottom-width: 0;
+}
+
+table tbody tr:hover {
+  background-color: hsl(var(--muted)/30%);
+}
+
+table th {
+  color: hsl(var(--muted-foreground));
+  font-weight: 500;
+  text-align: left;
+  padding: 0.75rem 1rem;
+}
+
+table td {
+  padding: 0.75rem 1rem;
+  color: hsl(var(--foreground));
+}
+
+table tfoot {
+  background-color: hsl(var(--muted)/50%);
+  border-top-width: 1px;
+  border-top-color: hsl(var(--border));
+}
+
+table tfoot tr {
+  color: hsl(var(--muted-foreground));
+}
+
+.dark table thead {
+  background-color: hsl(var(--muted)/80%);
+}
+
+.dark table thead tr {
+  background-color: hsl(var(--muted)/80%);
+  color: hsl(var(--muted-foreground));
+}
+
+.dark table tfoot {
+  background-color: hsl(var(--muted)/80%);
+}
+
+.dark table th {
+  color: hsl(var(--muted-foreground));
+}
+
+/* Pagination area for tables */
+.table-pagination {
+  background-color: hsl(var(--muted)/50%);
+  border-top-width: 1px;
+  border-top-color: hsl(var(--border));
+}
+
+.dark .table-pagination {
+  background-color: hsl(var(--muted)/80%);
+}
+
+/* Striped tables */
+table.table-striped tbody tr:nth-child(odd) {
+  background-color: hsl(var(--muted)/20%);
+}
+
+table.table-striped tbody tr:nth-child(even) {
+  background-color: transparent;
+}
+
+table.table-striped tbody tr:hover {
+  background-color: hsl(var(--muted)/40%);
+}
+
+/* Standard table with divide classes */
+table.min-w-full.divide-y.divide-gray-200 {
+  border-color: hsl(var(--border));
+}
+
+table.min-w-full.divide-y.divide-gray-200 thead {
+  background-color: hsl(var(--muted)/50%);
+}
+
+table.min-w-full.divide-y.divide-gray-200 th {
+  color: hsl(var(--muted-foreground));
+  font-weight: 500;
+}
+
+table.min-w-full.divide-y.divide-gray-200 tbody {
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+}
+
+table.min-w-full.divide-y.divide-gray-200 tbody tr {
+  border-bottom-width: 1px;
+  border-bottom-color: hsl(var(--border));
+  transition: background-color 0.2s;
+}
+
+table.min-w-full.divide-y.divide-gray-200 tbody tr:hover {
+  background-color: hsl(var(--muted)/30%);
+}
+
+/* Card overrides */
+.card {
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dark .card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Input field overrides */
+input,
+select,
+textarea {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: hsl(var(--foreground));
+}
+
+/* Make material icons inherit color */
+.material-icons {
+  color: inherit;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Print Styles */
+@media print {
+
+  /* Hide everything by default */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Show only the purchase order document and its children */
+  .purchase-order-document,
+  .purchase-order-document * {
+    visibility: visible;
+  }
+
+  /* Position the purchase order document to fill the page */
+  .purchase-order-document {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  /* Hide elements that shouldn't be printed */
+  .print\\:hidden {
+    display: none !important;
+  }
+
+  /* Show elements only when printing */
+  .print\\:block {
+    display: block !important;
+  }
+
+  /* Remove shadows and borders for cleaner print */
+  .print\\:shadow-none {
+    box-shadow: none !important;
+  }
+
+  .print\\:border-none {
+    border: none !important;
+  }
+
+  /* Optimize page layout for printing */
+  @page {
+    margin: 0.5in;
+    size: A4;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+
+  /* Ensure proper page breaks */
+  .print-page-break {
+    page-break-before: always;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid;
+  }
+
+  /* Table styles for printing */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  table th,
+  table td {
+    border: 1px solid #000 !important;
+    padding: 8px !important;
+    font-size: 11pt !important;
+  }
+
+  table thead {
+    background-color: #f5f5f5 !important;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  /* Badge styles for printing */
+  .badge,
+  [class*="badge"] {
+    border: 1px solid #000 !important;
+    background-color: transparent !important;
+    color: black !important;
+    padding: 2px 6px !important;
+    font-size: 10pt !important;
+  }
+
+  /* Card styles for printing */
+  .card,
+  [class*="card"] {
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+    background: white !important;
+  }
+
+  /* Typography adjustments */
+  h1 {
+    font-size: 24pt !important;
+  }
+
+  h2 {
+    font-size: 20pt !important;
+  }
+
+  h3 {
+    font-size: 16pt !important;
+  }
+
+  h4 {
+    font-size: 14pt !important;
+  }
+
+  /* Separator styles */
+  hr,
+  .separator {
+    border-top: 1px solid #000 !important;
+    margin: 16px 0 !important;
+  }
+
+  /* Ensure colors are preserved */
+  * {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}

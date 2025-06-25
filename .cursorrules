@@ -1,0 +1,33 @@
+# Cursor Rules for Kenya ERP Merchant Frontend
+
+## SDK Generation
+- **NEVER edit files in `/lib/sdk` folder manually**
+- Always generate SDK from backend using: `npm run build && npm run openapi:merchant`
+- Run this command in the backend (kenya-fuel-api) directory after making API changes
+- The SDK is auto-generated from OpenAPI spec and should not be manually modified
+
+## Code Style
+- Use TypeScript for all new files
+- Follow existing patterns for components and pages
+- Use shadcn/ui components consistently
+- Implement proper error handling and loading states
+
+## API Integration
+- Use the generated SDK services for all API calls
+- Handle authentication with useAuth hook
+- Show proper error messages and success notifications
+- Implement proper loading states for better UX
+
+## UI/UX Guidelines
+- Follow the existing design patterns from other pages
+- Use consistent badge colors and styling
+- Implement proper responsive design
+- Add proper accessibility attributes
+
+## Color and Contrast Requirements
+- **ALWAYS use color combinations with good contrast in both light and dark themes**
+- For inactive/secondary badges: Use `variant="outline"` with custom classes for better contrast
+- For status indicators: Ensure text is readable against background in all theme modes
+- Test color combinations in both light and dark modes before implementation
+- Prefer semantic color classes that adapt to theme (e.g., `text-muted-foreground`, `bg-muted`)
+- Avoid hardcoded colors that may not work well in both themes 

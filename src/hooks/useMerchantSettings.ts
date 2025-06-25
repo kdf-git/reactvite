@@ -1,85 +1,39 @@
-import { useAuth } from './useAuth';
-import type { MerchantResponseDto } from '@/lib/sdk';
+import { useState, useEffect } from 'react';
 
 export interface MerchantSettings {
-    timezone: string;
-    country: string;
-    currency: string;
-    currencySymbol: string;
+  currency: string;
+  currencySymbol: string;
+  decimalPlaces: number;
+  timezone: string;
+  dateFormat: string;
+  timeFormat: string;
 }
 
-export function useMerchantSettings(): MerchantSettings {
-    const { user } = useAuth();
-    const merchant = user?.merchant;
+export const useMerchantSettings = () => {
+  const [settings, setSettings] = useState<MerchantSettings>({
+    currency: 'USD',
+    currencySymbol: '$',
+    decimalPlaces: 2,
+    timezone: 'UTC',
+    dateFormat: 'MM/DD/YYYY',
+    timeFormat: 'HH:mm'
+  });
 
-    // All values come from the backend with proper defaults
-    const timezone = merchant?.timezone || 'Africa/Nairobi';
-    const country = merchant?.country || 'KE';
-    const currency = merchant?.currency || 'KES';
-    const currencySymbol = merchant?.currencySymbol || 'KSh';
+  const [loading, setLoading] = useState(false);
 
-    return {
-        timezone,
-        country,
-        currency,
-        currencySymbol,
-    };
-}
+  useEffect(() => {
+    // In a real app, you would fetch merchant settings from API
+    // For boilerplate, we'll use default settings
+    setLoading(false);
+  }, []);
 
-export function formatCurrency(amount: number, settings: MerchantSettings): string {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: settings.currency,
-        currencyDisplay: 'symbol',
-    }).format(amount).replace(/[A-Z]{3}/, settings.currencySymbol);
-}
-
-// Helper function to format date using merchant timezone
-export const formatDate = (date: Date | string, merchantSettings?: MerchantSettings): string => {
-    const settings = merchantSettings || {
-        timezone: 'Africa/Nairobi',
-        country: 'KE',
-        currency: 'KES',
-        currencySymbol: 'KSh',
-    };
-
-    const dateObj = typeof date === 'string' ? new Date(date) : date;
-
-    try {
-        return new Intl.DateTimeFormat('en', {
-            timeZone: settings.timezone,
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-        }).format(dateObj);
-    } catch (error) {
-        // Fallback to local time if timezone is not supported
-        return dateObj.toLocaleString('en');
-    }
+  return {
+    ...settings,
+    loading,
+    setSettings
+  };
 };
 
-// Helper function to format date only (without time) using merchant timezone
-export const formatDateOnly = (date: Date | string, merchantSettings?: MerchantSettings): string => {
-    const settings = merchantSettings || {
-        timezone: 'Africa/Nairobi',
-        country: 'KE',
-        currency: 'KES',
-        currencySymbol: 'KSh',
-    };
-
-    const dateObj = typeof date === 'string' ? new Date(date) : date;
-
-    try {
-        return new Intl.DateTimeFormat('en', {
-            timeZone: settings.timezone,
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-        }).format(dateObj);
-    } catch (error) {
-        // Fallback to local time if timezone is not supported
-        return dateObj.toLocaleDateString('en');
-    }
+export const formatCurrency = (amount: number, currency = 'USD', symbol = '$'): string => {
+  return `${symbol}${amount.toFixed(2)}`;
 }; 

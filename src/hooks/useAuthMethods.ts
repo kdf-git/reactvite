@@ -4,7 +4,7 @@ import AuthService, { LoginRequest, RegisterRequest } from "@/services/auth.serv
 import { startTokenRefreshChecker } from "@/services/token-refresher";
 import { sdkUserToAppUser } from "@/utils/userAdapter";
 import { toast } from "sonner";
-import { usersService } from "@/services/sdk";
+import { secureApi } from "@/services/sdk";
 import { UpdateProfileDto } from "@/lib/sdk";
 import { api } from "@/services/api";
 
@@ -128,7 +128,7 @@ export const useAuthMethods = (
 
       // get user id from 
 
-      const updatedSdkUser = await usersService.usersControllerUpdateProfile(updateData);
+      const updatedSdkUser = await secureApi.users.usersControllerUpdateProfile(updateData);
       const updatedAppUser = sdkUserToAppUser(updatedSdkUser);
 
       setUser(updatedAppUser);

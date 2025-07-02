@@ -13,6 +13,8 @@ import ForgotPassword from "./pages/forgot-password";
 import Profile from "./pages/profile";
 import NotFound from "./pages/not-found";
 import Dashboard from "./pages/dashboard";
+import ChoreChartLanding from "./pages/chore-chart";
+import ChoreChartDownload from "./pages/chore-chart-download";
 
 // Create a new query client
 const queryClient = new QueryClient();
@@ -48,6 +50,8 @@ const App = () => {
               <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/chore-chart" element={<ChoreChartLanding />} />
+                <Route path="/chore-chart/download" element={<ChoreChartDownload />} />
                 <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
                 {/* Protected Routes with Layout */}

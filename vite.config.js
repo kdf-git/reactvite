@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -20,6 +21,6 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    outDir: "/Users/trevorsuna/POLARIS/TRACKSOL_ALICLOUD_TMS1/TRACKSOLERP/merchant",
+    outDir: "dist",
   },
 }));
